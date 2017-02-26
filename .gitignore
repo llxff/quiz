@@ -1,0 +1,13 @@
+/_build
+/db
+/deps
+/*.ez
+erl_crash.dump
+/node_modules
+/priv/static/
+/config/prod.secret.exs
+/config/dev.exs
+/config/test.exs
+.idea
+*.iml
+yarn-error.log
