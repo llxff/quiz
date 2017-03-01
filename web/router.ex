@@ -13,8 +13,8 @@ defmodule Quiz.Router do
   end
 
   scope "/", Quiz do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 end
