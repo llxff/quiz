@@ -8,51 +8,68 @@ class NewWordForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.initialState = {
       name: "",
       translation: "",
       example: "",
-      errors: {}
-    };
+      errors: {},
+      previousWord: null
+    }
+
+    this.state = this.initialState;
   }
 
   render() {
     return (
-      <form>
-        <div className="form-group">
-          <label htmlFor="nameInput">Слово</label>
-          <input type="text"
-                 className="form-control"
-                 id="nameInput"
-                 placeholder="to write"
-                 value={ this.state.name }
-                 onChange={ ::this.handleChange("name") } />
-          <p className="text-danger">{ this.state.errors["name"] }</p>
-        </div>
-        <div className="form-group">
-          <label htmlFor="translationInput">Перевод</label>
-          <input type="text"
-                 className="form-control"
-                 id="translationInput"
-                 placeholder="писать"
-                 value={ this.state.translation }
-                 onChange={ ::this.handleChange("translation") } />
-          <p className="text-danger">{ this.state.errors["translation"] }</p>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInput">Пример</label>
-          <textarea className="form-control"
-                    id="exampleInput"
-                    rows="3"
-                    placeholder="I'm going to write an example."
-                    value={ this.state.example }
-                    onChange={ ::this.handleChange("example") }
-          ></textarea>
-          <p className="text-danger">{ this.state.errors["example"] }</p>
-        </div>
-        <a className="btn btn-default" onClick={ ::this.saveWord }>Сохранить</a>
-      </form>
+      <div>
+        { ::this.renderPreviousWord(this.state.previousWord) }
+        <form>
+          <div className="form-group">
+            <label htmlFor="nameInput">Слово</label>
+            <input type="text"
+                   className="form-control"
+                   id="nameInput"
+                   placeholder="to write"
+                   value={ this.state.name }
+                   onChange={ ::this.handleChange("name") } />
+            <p className="text-danger">{ this.state.errors["name"] }</p>
+          </div>
+          <div className="form-group">
+            <label htmlFor="translationInput">Перевод</label>
+            <input type="text"
+                   className="form-control"
+                   id="translationInput"
+                   placeholder="писать"
+                   value={ this.state.translation }
+                   onChange={ ::this.handleChange("translation") } />
+            <p className="text-danger">{ this.state.errors["translation"] }</p>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInput">Пример</label>
+            <input className="form-control"
+                      id="exampleInput"
+                      placeholder="I'm going to write an example."
+                      value={ this.state.example }
+                      onChange={ ::this.handleChange("example") } />
+            <p className="text-danger">{ this.state.errors["example"] }</p>
+          </div>
+          <a className="btn btn-info" onClick={ ::this.saveWord }>Сохранить</a>
+          <span> </span>
+          <a className="btn btn-success" onClick={ ::this.saveWordAndAddNew }>Сохранить и добавить новое</a>
+        </form>
+      </div>
     )
+  }
+
+  renderPreviousWord(word) {
+    if(word) {
+      return (
+        <blockquote>
+          <p><i>{ word.name }</i> - { word.translation }</p>
+          <footer>{ word.example }</footer>
+        </blockquote>
+      )
+    }
   }
 
   handleChange(field) {
@@ -61,13 +78,25 @@ class NewWordForm extends React.Component {
     }
   }
 
-
   saveWord() {
+    ::this.save(() => {
+      ::this.props.dispatch(routerActions.push("/"))
+    });
+  }
+
+  saveWordAndAddNew() {
+    ::this.save((word) => {
+      const newState = Object.assign(this.initialState, { previousWord: word });
+      ::this.setState(newState);
+    });
+  }
+
+  save(callback) {
     this.props.mutate({ variables: this.state }).then(({ data }) => {
       const { create_word: { errors, word } } = data;
 
       if (word) {
-        ::this.props.dispatch(routerActions.push("/"))
+        callback(word);
       }
       else {
         ::this.setState({ errors: errors });
@@ -80,7 +109,10 @@ const mutation = gql`
   mutation CreateWord($name: String!, $translation: String!, $example: String!) {
     create_word(name: $name, translation: $translation, example: $example) {
       word {
-        id
+        id,
+        name,
+        translation,
+        example
       },
       errors {
         name,
