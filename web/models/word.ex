@@ -5,6 +5,8 @@ defmodule Quiz.Word do
     field :name, :string
     field :translation, :string
     field :example, :string
+    field :studied, :boolean
+    field :last_quiz_id, :string
 
     timestamps()
   end

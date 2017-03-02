@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { routerActions } from "react-router-redux";
+import WordInfo from "../words/info"
 
 class NewWordForm extends React.Component {
   constructor(props) {
@@ -63,12 +64,7 @@ class NewWordForm extends React.Component {
 
   renderPreviousWord(word) {
     if(word) {
-      return (
-        <blockquote>
-          <p><i>{ word.name }</i> - { word.translation }</p>
-          <footer>{ word.example }</footer>
-        </blockquote>
-      )
+      return <WordInfo word={ word }/>
     }
   }
 
