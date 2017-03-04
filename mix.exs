@@ -42,7 +42,9 @@ defmodule WordsWeb.Mixfile do
       {:cowboy, "~> 1.0"},
       {:absinthe, "~> 1.2.6"},
       {:absinthe_plug, "~> 1.2.2"},
-      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"}
+      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
+      {:guardian, "~> 0.14"},
+      {:comeonin, "~> 3.0"}
     ]
   end
 

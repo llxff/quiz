@@ -11,6 +11,7 @@ class TestWord extends React.Component {
 
     this.state = { info: false }
   }
+
   render() {
     const { quiz_id, data: { quiz_word }} = this.props;
 

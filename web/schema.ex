@@ -2,9 +2,13 @@ defmodule WordsWeb.Schema do
   use Absinthe.Schema
   import_types WordsWeb.Schema.Types
 
-  alias WordsWeb.WordResolver
+  alias WordsWeb.{SessionResolver, WordResolver}
 
   query do
+    field :current_user, :user do
+      resolve &SessionResolver.current_user/2
+    end
+
     field :words, list_of(:word) do
       resolve &WordResolver.all/2
     end
@@ -17,6 +21,20 @@ defmodule WordsWeb.Schema do
   end
 
   mutation do
+    field :sign_in, type: :session do
+      arg :email,    non_null(:string)
+      arg :password, non_null(:string)
+
+      resolve &SessionResolver.sign_in/2
+    end
+
+    field :sign_up, type: :session do
+      arg :email,    non_null(:string)
+      arg :password, non_null(:string)
+
+      resolve &SessionResolver.sign_up/2
+    end
+
     field :create_word, type: :create_word_response do
       arg :name,        non_null(:string)
       arg :translation, non_null(:string)

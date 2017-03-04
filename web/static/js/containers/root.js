@@ -1,13 +1,14 @@
 import React        from "react";
 import { Router }   from "react-router";
 import routes       from "../routes";
-import ApolloClient, { createNetworkInterface, addTypename } from "apollo-client"
+import ApolloClient, { addTypename } from "apollo-client"
 import { ApolloProvider } from "react-apollo"
 import configureStore     from "../store";
 import { browserHistory } from "react-router";
+import networkInterface from "../apollo/network_interface"
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({ uri: "/api" }),
+  networkInterface: networkInterface,
   queryTransformer: addTypename
 });
 
