@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :quiz,
-  ecto_repos: [Quiz.Repo]
+config :words_web,
+  ecto_repos: [WordsWeb.Repo]
 
 # Configures the endpoint
-config :quiz, Quiz.Endpoint,
+config :words_web, WordsWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "iHYnMun8rO7CiqTCWBiRsU9H52cCgb2Jt2nAltUScInjQdkaBTY118f2RPUZ47IS",
-  render_errors: [view: Quiz.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Quiz.PubSub,
+  render_errors: [view: WordsWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: WordsWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

@@ -1,3 +1,3 @@
-defmodule Quiz.PageView do
-  use Quiz.Web, :view
+defmodule WordsWeb.PageView do
+  use WordsWeb.Web, :view
 end

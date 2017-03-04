@@ -1,5 +1,5 @@
-defmodule Quiz.Word do
-  use Quiz.Web, :model
+defmodule WordsWeb.Word do
+  use WordsWeb.Web, :model
 
   schema "words" do
     field :name, :string

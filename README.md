@@ -1,4 +1,4 @@
-# Quiz
+# WordsWeb
 
 To start your Phoenix app:
 

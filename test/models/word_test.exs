@@ -1,7 +1,7 @@
-defmodule Quiz.WordTest do
-  use Quiz.ModelCase
+defmodule WordsWeb.WordTest do
+  use WordsWeb.ModelCase
 
-  alias Quiz.Word
+  alias WordsWeb.Word
 
   @valid_attrs %{example: "some content", name: "some content", translation: "some content"}
   @invalid_attrs %{}

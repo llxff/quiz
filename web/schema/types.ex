@@ -1,6 +1,6 @@
-defmodule Quiz.Schema.Types do
+defmodule WordsWeb.Schema.Types do
   use Absinthe.Schema.Notation
-  use Absinthe.Ecto, repo: Quiz.Repo
+  use Absinthe.Ecto, repo: WordsWeb.Repo
 
   object :word do
     field :id,          :id

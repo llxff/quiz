@@ -1,4 +1,4 @@
 ExUnit.start
 
-Ecto.Adapters.SQL.Sandbox.mode(Quiz.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(WordsWeb.Repo, :manual)
 

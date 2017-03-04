@@ -1,4 +1,4 @@
-defmodule Quiz.Repo.Migrations.AddQuiz do
+defmodule WordsWeb.Repo.Migrations.AddQuiz do
   use Ecto.Migration
 
   def change do

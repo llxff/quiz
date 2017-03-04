@@ -1,8 +1,8 @@
-defmodule Quiz.Router do
-  use Quiz.Web, :router
+defmodule WordsWeb.Router do
+  use WordsWeb.Web, :router
 
-  forward "/api", Absinthe.Plug, schema: Quiz.Schema
-  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: Quiz.Schema
+  forward "/api", Absinthe.Plug, schema: WordsWeb.Schema
+  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: WordsWeb.Schema
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,7 +12,7 @@ defmodule Quiz.Router do
     plug :put_secure_browser_headers
   end
 
-  scope "/", Quiz do
+  scope "/", WordsWeb do
     pipe_through :browser
 
     get "/*path", PageController, :index

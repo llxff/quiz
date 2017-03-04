@@ -1,4 +1,4 @@
-defmodule Quiz.ChangesetErrors do
+defmodule WordsWeb.ChangesetErrors do
   def to_map(errors) do
     errors
     |> Enum.into(%{}, fn {field, { message, _}} -> {field, message} end)

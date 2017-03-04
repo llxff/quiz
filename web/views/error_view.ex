@@ -1,5 +1,5 @@
-defmodule Quiz.ErrorView do
-  use Quiz.Web, :view
+defmodule WordsWeb.ErrorView do
+  use WordsWeb.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

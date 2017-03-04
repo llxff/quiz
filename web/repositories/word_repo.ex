@@ -1,7 +1,7 @@
-defmodule Quiz.WordRepo do
+defmodule WordsWeb.WordRepo do
   import Ecto.Query, only: [from: 2, limit: 2, offset: 2]
 
-  alias Quiz.{Repo, Word}
+  alias WordsWeb.{Repo, Word}
 
   def all(), do: {:ok, Repo.all(Word) }
 

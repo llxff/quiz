@@ -1,5 +1,5 @@
-defmodule Quiz.WordResolver do
-  alias Quiz.{WordRepo, ChangesetErrors}
+defmodule WordsWeb.WordResolver do
+  alias WordsWeb.{WordRepo, ChangesetErrors}
 
   def all(_args, _info), do: WordRepo.all()
 

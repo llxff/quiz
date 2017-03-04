@@ -1,8 +1,8 @@
-defmodule Quiz.Schema do
+defmodule WordsWeb.Schema do
   use Absinthe.Schema
-  import_types Quiz.Schema.Types
+  import_types WordsWeb.Schema.Types
 
-  alias Quiz.WordResolver
+  alias WordsWeb.WordResolver
 
   query do
     field :words, list_of(:word) do

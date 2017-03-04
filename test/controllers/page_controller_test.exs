@@ -1,5 +1,5 @@
-defmodule Quiz.PageControllerTest do
-  use Quiz.ConnCase
+defmodule WordsWeb.PageControllerTest do
+  use WordsWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

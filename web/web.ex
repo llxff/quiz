@@ -1,12 +1,12 @@
-defmodule Quiz.Web do
+defmodule WordsWeb.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use Quiz.Web, :controller
-      use Quiz.Web, :view
+      use WordsWeb.Web, :controller
+      use WordsWeb.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,12 +30,12 @@ defmodule Quiz.Web do
     quote do
       use Phoenix.Controller
 
-      alias Quiz.Repo
+      alias WordsWeb.Repo
       import Ecto
       import Ecto.Query
 
-      import Quiz.Router.Helpers
-      import Quiz.Gettext
+      import WordsWeb.Router.Helpers
+      import WordsWeb.Gettext
     end
   end
 
@@ -49,9 +49,9 @@ defmodule Quiz.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Quiz.Router.Helpers
-      import Quiz.ErrorHelpers
-      import Quiz.Gettext
+      import WordsWeb.Router.Helpers
+      import WordsWeb.ErrorHelpers
+      import WordsWeb.Gettext
     end
   end
 
@@ -65,10 +65,10 @@ defmodule Quiz.Web do
     quote do
       use Phoenix.Channel
 
-      alias Quiz.Repo
+      alias WordsWeb.Repo
       import Ecto
       import Ecto.Query
-      import Quiz.Gettext
+      import WordsWeb.Gettext
     end
   end
 

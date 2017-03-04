@@ -1,14 +1,14 @@
-defmodule Quiz.Endpoint do
-  use Phoenix.Endpoint, otp_app: :quiz
+defmodule WordsWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :words_web
 
-  socket "/socket", Quiz.UserSocket
+  socket "/socket", WordsWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :quiz, gzip: false,
+    at: "/", from: :words_web, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -38,5 +38,5 @@ defmodule Quiz.Endpoint do
     key: "_quiz_key",
     signing_salt: "2br0tk4/"
 
-  plug Quiz.Router
+  plug WordsWeb.Router
 end

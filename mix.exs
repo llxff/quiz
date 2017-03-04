@@ -1,8 +1,8 @@
-defmodule Quiz.Mixfile do
+defmodule WordsWeb.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :quiz,
+    [app: :words_web,
      version: "0.0.1",
      elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -18,7 +18,7 @@ defmodule Quiz.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Quiz, []},
+      mod: {WordsWeb, []},
       extra_applications: [:logger]
     ]
   end
@@ -42,9 +42,7 @@ defmodule Quiz.Mixfile do
       {:cowboy, "~> 1.0"},
       {:absinthe, "~> 1.2.6"},
       {:absinthe_plug, "~> 1.2.2"},
-      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
-      {:guardian, "~> 0.14"},
-      {:comeonin, "~> 3.0"}
+      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"}
     ]
   end
 

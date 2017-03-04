@@ -1,3 +1,3 @@
-defmodule Quiz.LayoutViewTest do
-  use Quiz.ConnCase, async: true
+defmodule WordsWeb.LayoutViewTest do
+  use WordsWeb.ConnCase, async: true
 end

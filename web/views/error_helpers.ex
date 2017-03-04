@@ -1,4 +1,4 @@
-defmodule Quiz.ErrorHelpers do
+defmodule WordsWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule Quiz.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Quiz.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(WordsWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Quiz.Gettext, "errors", msg, opts)
+      Gettext.dgettext(WordsWeb.Gettext, "errors", msg, opts)
     end
   end
 end
