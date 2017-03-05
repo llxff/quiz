@@ -1,45 +1,25 @@
 defmodule WordsWeb.WordRepo do
-  import Ecto.Query, only: [from: 2, limit: 2, offset: 2]
+  alias WordsWeb.Word
 
-  alias WordsWeb.{Repo, Word}
+  import Bolt.Sips, only: [conn: 0, query: 3]
 
-  def all(), do: {:ok, Repo.all(Word) }
+  def of_user(user_id) do
+    query = "match (n:Word)-[:ASSOCIATION]->(:Word) where n.user_id = {user_id} return distinct(n)"
 
-  def create(attributes) do
-    %Word{}
-    |> Word.changeset(attributes)
-    |> Repo.insert
+    conn()
+    |> query(query, %{user_id: user_id})
+    |> build_list()
   end
 
-  def quiz_word(quiz_id) do
-    query = from w in Word, where: w.last_quiz_id != ^quiz_id and w.studied == false
-
-    random_offset = query
-      |> count
-      |> random
-
-    query
-    |> offset(^random_offset)
-    |> limit(1)
-    |> Repo.all
-    |> List.first
+  defp build_list({:ok, rows}) do
+    rows
+    |> Stream.map(&(&1["n"]))
+    |> Stream.map(&build_word/1)
+    |> Enum.to_list
   end
+  defp build_list({:error, _}), do: []
 
-  def mark_as_studied(quiz_id, word_id) do
-    update(word_id, [last_quiz_id: quiz_id, studied: true])
-  end
-
-  def update_quiz_id(quiz_id, word_id) do
-    update(word_id, [last_quiz_id: quiz_id])
-  end
-
-  defp count(query), do: Repo.aggregate(query, :count, :id)
-
-  defp random(0), do: 0
-  defp random(n), do: :rand.uniform(n) - 1
-
-  defp update(word_id, fields) do
-    from(w in Word, where: w.id == ^word_id)
-    |> Repo.update_all(set: fields)
+  defp build_word(%Bolt.Sips.Types.Node{id: id, properties: properties}) do
+    Word.init(id, properties)
   end
 end

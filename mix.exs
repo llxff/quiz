@@ -44,7 +44,8 @@ defmodule WordsWeb.Mixfile do
       {:absinthe_plug, "~> 1.2.2"},
       {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
       {:guardian, "~> 0.14"},
-      {:comeonin, "~> 3.0"}
+      {:comeonin, "~> 3.0"},
+      {:bolt_sips, "~> 0.2"}
     ]
   end
 

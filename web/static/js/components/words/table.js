@@ -13,8 +13,7 @@ class WordsTable extends React.Component {
           <tr>
             <th>#</th>
             <th>Слово</th>
-            <th>Перевод</th>
-            <th>Пример</th>
+            <th>Значения</th>
           </tr>
           </thead>
           <tbody>
@@ -24,8 +23,11 @@ class WordsTable extends React.Component {
                 <tr key={ word.id }>
                   <td>{ word.id }</td>
                   <td>{ word.name }</td>
-                  <td>{ word.translation }</td>
-                  <td>{ word.example }</td>
+                  <td>
+                    {
+                      word.descriptions.map((desc, i) => (<p key={i}>{ desc }</p>))
+                    }
+                  </td>
                 </tr>
               )
             })
@@ -45,8 +47,7 @@ const query = gql`
     words {
       id,
       name,
-      translation,
-      example
+      descriptions
     }
   }
 `;

@@ -1,19 +1,14 @@
 defmodule WordsWeb.Word do
-  use WordsWeb.Web, :model
+  defstruct id: nil, user_id: nil, name: "", descriptions: []
 
-  schema "words" do
-    field :name, :string
-    field :translation, :string
-    field :example, :string
-    field :studied, :boolean
-    field :last_quiz_id, :string
+  def init(id, attrs) do
+    struct = %WordsWeb.Word{id: id}
 
-    timestamps()
-  end
-
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:name, :translation, :example])
-    |> validate_required([:name, :translation, :example])
+    Enum.reduce Map.to_list(struct), struct, fn {k, _}, acc ->
+      case Map.fetch(attrs, Atom.to_string(k)) do
+        {:ok, v} -> %{acc | k => v}
+        :error -> acc
+      end
+    end
   end
 end

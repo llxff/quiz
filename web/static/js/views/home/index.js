@@ -1,6 +1,6 @@
 import React from "react";
-import WordsTable from "../../components/words/table"
 import { Link } from "react-router";
+import WordsTable from "../../components/words/table"
 
 class HomeIndexView extends React.Component {
   render() {

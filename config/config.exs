@@ -31,6 +31,13 @@ config :guardian, Guardian,
   secret_key: "a3eca965949d07bd2d26192ff45639c467a0597cb7acc05a50b936a5e2749c4f",
   serializer: WordsWeb.GuardianSerializer
 
+config :bolt_sips, Bolt,
+  hostname: 'localhost',
+  basic_auth: [username: "neo4j", password: "123"],
+  port: 7687,
+  pool_size: 5,
+  max_overflow: 1
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

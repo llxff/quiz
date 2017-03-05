@@ -12,20 +12,8 @@ defmodule WordsWeb.Schema.Types do
   end
 
   object :word do
-    field :id,          :id
-    field :name,        :string
-    field :translation, :string
-    field :example,     :string
-  end
-
-  object :word_errors do
-    field :name,        :string
-    field :translation, :string
-    field :example,     :string
-  end
-
-  object :create_word_response do
-    field :word,   :word
-    field :errors, :word_errors
+    field :id,           :id
+    field :name,         :string
+    field :descriptions, list_of(:string)
   end
 end
