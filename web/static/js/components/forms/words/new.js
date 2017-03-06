@@ -3,7 +3,6 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { routerActions } from "react-router-redux";
-import WordInfo from "../words/info"
 
 class NewWordForm extends React.Component {
   constructor(props) {
@@ -23,7 +22,6 @@ class NewWordForm extends React.Component {
   render() {
     return (
       <div>
-        { ::this.renderPreviousWord(this.state.previousWord) }
         <form>
           <div className="form-group">
             <label htmlFor="nameInput">Слово</label>
@@ -54,18 +52,10 @@ class NewWordForm extends React.Component {
                       onChange={ ::this.handleChange("example") } />
             <p className="text-danger">{ this.state.errors["example"] }</p>
           </div>
-          <a className="btn btn-info" onClick={ ::this.saveWord }>Сохранить</a>
-          <span> </span>
-          <a className="btn btn-success" onClick={ ::this.saveWordAndAddNew }>Сохранить и добавить новое</a>
+          <a className="btn btn-info" onClick={ ::this.save }>Сохранить</a>
         </form>
       </div>
     )
-  }
-
-  renderPreviousWord(word) {
-    if(word) {
-      return <WordInfo word={ word }/>
-    }
   }
 
   handleChange(field) {
@@ -74,25 +64,12 @@ class NewWordForm extends React.Component {
     }
   }
 
-  saveWord() {
-    ::this.save(() => {
-      ::this.props.dispatch(routerActions.push("/"))
-    });
-  }
-
-  saveWordAndAddNew() {
-    ::this.save((word) => {
-      const newState = Object.assign(this.initialState, { previousWord: word });
-      ::this.setState(newState);
-    });
-  }
-
-  save(callback) {
+  save() {
     this.props.mutate({ variables: this.state }).then(({ data }) => {
       const { create_word: { errors, word } } = data;
 
       if (word) {
-        callback(word);
+        ::this.props.dispatch(routerActions.push("/"))
       }
       else {
         ::this.setState({ errors: errors });
