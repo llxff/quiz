@@ -1,6 +1,8 @@
-import React       from "react";
+import React from "react";
 import { graphql } from "react-apollo"
-import gql         from "graphql-tag"
+import gql from "graphql-tag"
+import { Link } from "react-router";
+
 
 class WordsTable extends React.Component {
   render() {
@@ -21,7 +23,7 @@ class WordsTable extends React.Component {
             words.map((word) => {
               return(
                 <tr key={ word.id }>
-                  <td>{ word.id }</td>
+                  <td><Link to={ `/words/${ word.id }` }>{ word.id }</Link></td>
                   <td>{ word.name }</td>
                   <td>
                     {

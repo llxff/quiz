@@ -6,6 +6,7 @@ import RegistrationsNew from "../views/registrations/new"
 import AuthenticatedContainer from "../containers/authenticated"
 import HomeIndexView from "../views/home";
 import NewWordView from "../views/words/new"
+import WordWeb from "../views/words/show"
 
 export default (
   <Route component={ MainLayout }>
@@ -16,6 +17,7 @@ export default (
       <IndexRoute component={ HomeIndexView } />
 
       <Route path="/words/new" component={ NewWordView } />
+      <Route path="/words/:id" component={ WordWeb } />
     </Route>
   </Route>
 );

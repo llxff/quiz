@@ -12,6 +12,12 @@ defmodule WordsWeb.Schema do
     field :words, list_of(:word) do
       resolve &WordResolver.of_current_user/2
     end
+
+    field :word_web, :word_web do
+      arg :id, non_null(:integer)
+
+      resolve &WordResolver.word_web/2
+    end
   end
 
   mutation do
