@@ -26,7 +26,8 @@ const query = gql`
     word_web(id: $id) {
       word {
         id,
-        name
+        name,
+        descriptions
       }
     }
   }
