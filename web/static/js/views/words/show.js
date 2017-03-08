@@ -10,7 +10,7 @@ class ShowWordView extends React.Component {
 
     if(word_web) {
       return (
-        <Word word={ word_web.word } />
+        <Word word_web={ word_web } />
       )
     }
     else {
@@ -25,6 +25,41 @@ const query = gql`
   query GetWordWeb($id: Int!) {
     word_web(id: $id) {
       word {
+        id,
+        name,
+        descriptions
+      },
+      associations {
+        subject {
+          id,
+          name
+        },
+        examples {
+          id,
+          name
+        }
+      },
+      synonyms {
+        subject {
+          id,
+          name
+        },
+        examples {
+          id,
+          name
+        }
+      },
+      antonyms {
+        subject {
+          id,
+          name
+        },
+        examples {
+          id,
+          name
+        }
+      },
+      idioms {
         id,
         name,
         descriptions

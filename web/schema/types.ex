@@ -23,11 +23,16 @@ defmodule WordsWeb.Schema.Types do
     field :descriptions, list_of(:string)
   end
 
+  object :meaning do
+    field :subject, :word
+    field :examples, list_of(:word)
+  end
+
   object :word_web do
     field :word,         :word
     field :idioms,       list_of(:idiom)
-    field :associations, list_of(:word)
-    field :synonyms,     list_of(:word)
-    field :antonyms,     list_of(:word)
+    field :associations, list_of(:meaning)
+    field :synonyms,     list_of(:meaning)
+    field :antonyms,     list_of(:meaning)
   end
 end
