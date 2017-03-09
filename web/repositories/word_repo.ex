@@ -50,7 +50,8 @@ defmodule WordsWeb.WordRepo do
       "antonyms": Enum.map(row["antonyms"], &associaion/1)
     }
   end
-  defp build_word_web({:error, _}), do: []
+  defp build_word_web({:ok, []}), do: %{}
+  defp build_word_web({:error, _}), do: %{}
 
   defp associaion(row) do
     model = ModelBuilder.build(row["subject"][:fields])

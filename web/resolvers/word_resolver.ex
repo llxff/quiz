@@ -6,6 +6,12 @@ defmodule WordsWeb.WordResolver do
   end
 
   def word_web(%{id: id}, %{context: %{current_user: %{id: user_id}}}) do
-    {:ok, WordRepo.word_web(id, user_id)}
+    word_web = WordRepo.word_web(id, user_id)
+
+    case word_web do
+      %{"word": _} -> {:ok, word_web}
+      %{} -> {:error, "Not found"}
+    end
+
   end
 end

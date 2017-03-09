@@ -6,17 +6,16 @@ import Word from "../../components/words/show"
 
 class ShowWordView extends React.Component {
   render() {
-    const { data: { word_web } } = this.props;
+    const { data: { word_web, error } } = this.props;
 
     if(word_web) {
-      return (
-        <Word word_web={ word_web } />
-      )
+      return <Word word_web={ word_web } />
+    }
+    else if(error) {
+      return <div>{ error.graphQLErrors[0].message }</div>
     }
     else {
-      return (
-        <div>Loading...</div>
-      )
+      return <div>Loading...</div>
     }
   }
 }
